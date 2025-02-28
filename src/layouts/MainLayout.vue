@@ -1,102 +1,60 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="transparent">
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
+        <q-item-label class="text-h4 text-weight-bold" style="letter-spacing: 0.3em">
+          LELO
         </q-item-label>
 
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
+        <q-space />
+        <q-btn
+          flat
+          round
+          dense
+          icon="search"
+          class="q-mr-sm"
+          size="1.2rem"
+          @click="dialog = true"
         />
-      </q-list>
-    </q-drawer>
+        <q-btn flat round dense icon="o_person" class="q-mr-sm" size="1.2rem" />
+        <q-btn flat round dense icon="o_shopping_bag" size="1.2rem" />
+      </q-toolbar>
 
-    <q-page-container>
+      <q-dialog v-model="dialog" stack-buttons prevent-close persistent>
+        <q-card class="q-py-none bg-black" style="width: 360px; max-width: 90vw">
+          <q-card-section class="q-pa-none">
+            <q-img src="dialog.jpg"></q-img>
+            <q-btn class="absolute-top-right" flat icon="close" round v-close-popup />
+          </q-card-section>
+          <q-card-section class="q-pa-sm">
+            <q-item-label class="text-h5 text-weight-bold" style="letter-spacing: 0.1em">
+              GET OFF <br />WITH 15% OFF
+            </q-item-label>
+            <q-item-label class="text-white text-subtitle1">
+              Be the first to know about exclusive sales, news and product releases.
+            </q-item-label>
+          </q-card-section>
+          <q-card-section class="flex q-pa-md justify-center">
+            <q-btn label="Start UP" class="text-weight-bold" outline></q-btn>
+          </q-card-section>
+        </q-card>
+      </q-dialog>
+    </q-header>
+    <q-page-container style="padding: 0">
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+const dialog = ref(false)
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+onMounted(() => {
+  if (route.path === '/') {
+    dialog.value = true
   }
-]
-
-const leftDrawerOpen = ref(false)
-
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+})
 </script>
