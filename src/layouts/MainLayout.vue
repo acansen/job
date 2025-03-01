@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="transparent">
+    <q-header class="transparent">
       <q-toolbar>
         <q-item-label class="text-h4 text-weight-bold" style="letter-spacing: 0.3em">
           LELO
@@ -45,7 +45,6 @@
     </q-page-container>
   </q-layout>
 </template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'

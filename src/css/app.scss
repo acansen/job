@@ -1,1 +1,39 @@
 // app global css in SCSS form
+
+.container {
+  margin: auto;
+  max-width: 1740px;
+}
+
+@media screen and (max-width: 1919px) {
+  .container {
+    max-width: 1500px;
+  }
+}
+
+@media screen and (max-width: 1599px) {
+  .container {
+    max-width: 1190px;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .container {
+    max-width: 950px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .container {
+    max-width: 100%;
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

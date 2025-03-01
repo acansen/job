@@ -101,6 +101,22 @@ export default defineConfig((ctx) => {
     framework: {
       config: {
         dark: true,
+        notify: {
+          /* look at QuasarConfOptions from the API card */
+          position: 'bottom',
+          type: 'positive',
+          actions: [
+            {
+              icon: 'close',
+              color: 'white',
+              round: true,
+              handler: () => {},
+            },
+          ],
+        },
+        screen: {
+          bodyClasses: true, // <<< add this
+        },
       },
       // iconSet: 'material-icons-outlined',
       // iconSet: 'material-icons', // Quasar icon set
@@ -114,7 +130,7 @@ export default defineConfig((ctx) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: ['Notify', 'AppFullscreen', 'Dialog', 'Loading'],
     },
 
     // animations: 'all', // --- includes all animations
